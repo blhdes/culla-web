@@ -41,7 +41,7 @@
             --purple: #9b5fff;
 
             --font-display: 'Cormorant Garamond', Georgia, serif;
-            --font-brand:   ui-rounded, 'SF Pro Rounded', 'SF Pro', system-ui, sans-serif;
+            --font-brand:   ui-rounded, 'SF Pro Rounded', 'Cormorant Garamond', Georgia, serif;
             --font-body:    'DM Sans', -apple-system, sans-serif;
 
             --w: 960px;
@@ -58,32 +58,6 @@
             line-height: 1.7;
             overflow-x: hidden;
         }
-
-        /* ── Grain overlay ─────────────────────────────────── */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 999;
-        }
-
-        /* ── Ambient glow ──────────────────────────────────── */
-        body::after {
-            content: '';
-            position: fixed;
-            top: -20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 70vw;
-            height: 50vh;
-            background: radial-gradient(ellipse, rgba(155,95,255,.07) 0%, transparent 65%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
 
         /* ── NAV ───────────────────────────────────────────── */
         nav {
@@ -121,34 +95,13 @@
         }
 
 
-        /* ── BADGE ─────────────────────────────────────────── */
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--text);
-            color: var(--bg);
-            border-radius: 11px;
-            padding: 9px 18px;
-            text-decoration: none;
-            font-family: var(--font-body);
-            transition: opacity .2s, transform .2s;
+        /* ── APP STORE BADGE ───────────────────────────────── */
+        .app-store-badge {
+            display: inline-block;
+            transition: opacity .2s;
         }
-        .badge:hover { opacity: .88; transform: translateY(-1px); }
-
-        .badge svg {
-            width: 15px; height: 19px;
-            fill: var(--bg);
-            flex-shrink: 0;
-        }
-
-        .badge-text { display: flex; flex-direction: column; line-height: 1.15; }
-        .badge-eye  { font-size: .6rem; opacity: .65; text-transform: uppercase; letter-spacing: .08em; }
-        .badge-main { font-size: .82rem; font-weight: 500; }
-
-        .badge-sm { padding: 7px 14px; }
-        .badge-sm .badge-main { font-size: .76rem; }
-
+        .app-store-badge:hover { opacity: .8; }
+        .app-store-badge img { height: 40px; }
 
         /* ── HERO ──────────────────────────────────────────── */
         .hero {
@@ -168,15 +121,7 @@
             height: clamp(96px, 16vw, 148px);
             border-radius: 26%;
             margin-bottom: 52px;
-            animation: float 7s ease-in-out infinite;
-            filter:
-                drop-shadow(0 0 36px rgba(155,95,255,.45))
-                drop-shadow(0 0 80px rgba(0,170,255,.18));
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50%       { transform: translateY(-13px); }
+            filter: drop-shadow(0 0 40px rgba(155,95,255,.3));
         }
 
         .hero h1 {
@@ -201,36 +146,6 @@
             margin-bottom: 52px;
             line-height: 1.65;
         }
-
-        .scroll-hint {
-            position: absolute;
-            bottom: 36px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            opacity: .28;
-            font-size: .65rem;
-            letter-spacing: .18em;
-            text-transform: uppercase;
-            animation: fade-bob 2.4s ease-in-out infinite;
-        }
-
-        .scroll-hint::after {
-            content: '';
-            display: block;
-            width: 1px;
-            height: 28px;
-            background: var(--text);
-        }
-
-        @keyframes fade-bob {
-            0%, 100% { opacity: .18; transform: translateX(-50%) translateY(0); }
-            50%       { opacity: .36; transform: translateX(-50%) translateY(5px); }
-        }
-
 
         /* ── SHARED SECTION WRAPPER ─────────────────────────── */
         .section {
@@ -289,19 +204,12 @@
 
         .card:hover {
             background: var(--bg-card-h);
-            transform: translateX(5px);
         }
 
         .card:nth-child(1) { --accent: var(--pink); }
         .card:nth-child(2) { --accent: var(--blue); }
         .card:nth-child(3) { --accent: var(--green); }
         .card:nth-child(4) { --accent: var(--purple); }
-
-        .card-icon {
-            font-size: 1.3rem;
-            margin-bottom: 18px;
-            display: block;
-        }
 
         .card h2 {
             font-family: var(--font-display);
@@ -453,7 +361,7 @@
             background: var(--bg-card-h);
         }
 
-        .badge:focus-visible {
+        .app-store-badge:focus-visible {
             outline: 2px solid var(--text);
             outline-offset: 3px;
         }
@@ -470,32 +378,16 @@
         /* ── RESPONSIVE ────────────────────────────────────── */
         @media (max-width: 640px) {
             .features-grid { grid-template-columns: 1fr; }
-            nav .badge { display: none; }
-            .scroll-hint { display: none; }
         }
     </style>
 </head>
 <body>
-
-<!-- Reusable Apple logo -->
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-    <symbol id="apple-logo" viewBox="0 0 814 1000">
-        <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-57.8-155.5-127.4C46 790.7 0 663 0 541.8c0-207.5 135.4-317.3 268.8-317.3 99.8 0 160.6 64.2 215.7 64.2 52.8 0 122.2-67.1 232.6-67.1 31 0 108.2 2.6 168.5 80.1zm-126.7-81.5c59.8-70.8 102.6-168.3 102.6-165.8 0-1.3 0-2.6-.6-3.9-24.1 3.9-131.2 57.1-195.1 137.9-53.4 65.4-103.6 169.4-103.6 253.9 0 4.5.6 9 1.3 13.4 3.9.6 9 1.3 14.3 1.3 58.5 0 150.4-51.5 181.1-237.8z"/>
-    </symbol>
-</svg>
 
 <a href="#main" class="skip-link">Skip to content</a>
 
 <!-- NAV -->
 <nav>
     <a href="#" class="logo">Culla</a>
-    <a href="#" class="badge badge-sm" aria-label="Download on the App Store">
-        <svg><use href="#apple-logo"/></svg>
-        <span class="badge-text">
-            <span class="badge-eye">Download on the</span>
-            <span class="badge-main">App Store</span>
-        </span>
-    </a>
 </nav>
 
 
@@ -510,15 +402,10 @@
         One photo at a time. Nothing leaves your phone.
     </p>
 
-    <a href="#" class="badge" aria-label="Download on the App Store">
-        <svg><use href="#apple-logo"/></svg>
-        <span class="badge-text">
-            <span class="badge-eye">Download on the</span>
-            <span class="badge-main">App Store</span>
-        </span>
+    <a href="#" class="app-store-badge">
+        <img src="./app-store-badge.svg" alt="Download on the App Store">
     </a>
 
-    <div class="scroll-hint" aria-hidden="true">Scroll</div>
 </section>
 
 
@@ -542,25 +429,21 @@
     <div class="features-grid stagger">
 
         <div class="card">
-            <span class="card-icon">🔒</span>
             <h2>Nothing leaves<br>your phone</h2>
             <p>Zero networking code. No analytics. No cloud sync. Photos are referenced by pointer, never copied. This isn't a privacy policy — it's a privacy architecture.</p>
         </div>
 
         <div class="card">
-            <span class="card-icon">👆</span>
             <h2>Swipe as<br>muscle memory</h2>
             <p>Left, right, up, down — each direction has a meaning, confirmed by haptic feedback and a colored flash. No buttons to hunt for. No menus to open.</p>
         </div>
 
         <div class="card">
-            <span class="card-icon">↩︎</span>
             <h2>No guilt,<br>no pressure</h2>
             <p>Full undo stack. "Dismissed" not "deleted." A focus timer that says Keep Going — never "You didn't finish." You can't mess this up.</p>
         </div>
 
         <div class="card">
-            <span class="card-icon">✦</span>
             <h2>Your galleries<br>are yours</h2>
             <p>Custom names, colors, and icons. When a photo lands in a glowing panel labeled with your word — that's not file management. That's curating your own life.</p>
         </div>
@@ -619,12 +502,8 @@
 <footer>
     <div class="footer-logo">Culla</div>
 
-    <a href="#" class="badge" aria-label="Download on the App Store">
-        <svg><use href="#apple-logo"/></svg>
-        <span class="badge-text">
-            <span class="badge-eye">Download on the</span>
-            <span class="badge-main">App Store</span>
-        </span>
+    <a href="#" class="app-store-badge">
+        <img src="./app-store-badge.svg" alt="Download on the App Store">
     </a>
 
     <div class="footer-links">
