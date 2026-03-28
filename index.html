@@ -12,9 +12,11 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Culla — Your memories deserve better">
     <meta property="og:description" content="A calm, private ritual for your photo library. One photo at a time. Nothing leaves your phone.">
-    <meta property="og:image" content="./icon.png">
+    <meta property="og:image" content="https://culla.app/og-image.png">
+    <meta property="og:url" content="https://culla.app">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://culla.app/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,10 +68,11 @@
             z-index: 100;
             padding: 22px var(--px);
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(250,249,247,.92) 0%, transparent 100%);
+            pointer-events: none;
         }
+
+        nav a { pointer-events: auto; }
 
         .skip-link {
             position: absolute;
@@ -93,7 +96,10 @@
             letter-spacing: .04em;
             color: var(--text);
             text-decoration: none;
+            transition: color .25s;
         }
+
+        nav.on-dark .logo { color: #f0ece5; }
 
 
         /* ── APP STORE BADGE ───────────────────────────────── */
@@ -167,6 +173,16 @@
             border-top: 1px solid var(--dim);
             position: relative;
             z-index: 1;
+        }
+
+        /* ── DARK SECTION ──────────────────────────────────── */
+        .dark-wrap {
+            background: #080808;
+            --text:     #f0ece5;
+            --muted:    #6e6b65;
+            --dim:      #252420;
+            --bg-card:  #101012;
+            color: #f0ece5;
         }
 
         .section-label {
@@ -436,17 +452,19 @@
 
 
 <!-- THE FEELING -->
-<section class="section reveal">
-    <p class="section-label">The feeling</p>
-    <p class="feeling-quote">
-        "Not a tool. Not a chore.<br>
-        An old photo album<br>on a Sunday afternoon."
-    </p>
-    <div class="feeling-body">
-        <p>Everyone has thousands of photos they never look at. Culla doesn't guilt you about it — it gives you a calm, private, five-minute ritual to actually see them again, one at a time, and decide what matters.</p>
-        <p>Swipe left, right, up, down. Each direction means something, confirmed by a haptic pulse. After thirty seconds your hands know the system — and you're just making decisions. Slowly. Without pressure.</p>
-    </div>
-</section>
+<div class="dark-wrap">
+    <section class="section reveal">
+        <p class="section-label">The feeling</p>
+        <p class="feeling-quote">
+            "Not a tool. Not a chore.<br>
+            An old photo album<br>on a Sunday afternoon."
+        </p>
+        <div class="feeling-body">
+            <p>Everyone has thousands of photos they never look at. Culla doesn't guilt you about it — it gives you a calm, private, five-minute ritual to actually see them again, one at a time, and decide what matters.</p>
+            <p>Swipe left, right, up, down. Each direction means something, confirmed by a haptic pulse. After thirty seconds your hands know the system — and you're just making decisions. Slowly. Without pressure.</p>
+        </div>
+    </section>
+</div>
 
 
 <!-- FEATURES -->
@@ -479,7 +497,8 @@
 
 
 <!-- PRIVACY POLICY -->
-<section class="section reveal" id="privacy">
+<div class="dark-wrap" id="privacy">
+    <section class="section reveal">
     <p class="section-label">Privacy Policy</p>
     <div class="privacy-content">
 
@@ -521,7 +540,8 @@
         </p>
 
     </div>
-</section>
+    </section>
+</div>
 
 
 <!-- FOOTER -->
@@ -549,6 +569,22 @@
     );
 
     document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+    // Nav logo colour based on section background
+    const nav = document.querySelector('nav');
+    const darkSections = document.querySelectorAll('.dark-wrap');
+
+    function updateNav() {
+        const navBottom = nav.getBoundingClientRect().bottom;
+        const isOverDark = Array.from(darkSections).some(s => {
+            const r = s.getBoundingClientRect();
+            return r.top < navBottom && r.bottom > 0;
+        });
+        nav.classList.toggle('on-dark', isOverDark);
+    }
+
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
 </script>
 
 </body>
