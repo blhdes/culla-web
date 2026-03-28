@@ -6,7 +6,7 @@
     <meta name="description" content="Culla — A calm, private space to reconnect with your photo library. One memory at a time. Nothing leaves your phone.">
     <title>Culla — Your memories deserve better</title>
 
-    <link rel="icon" type="image/png" href="./icon.png">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
     <link rel="apple-touch-icon" href="./icon.png">
 
     <!-- Open Graph -->
@@ -28,17 +28,17 @@
         }
 
         :root {
-            --bg:           #080808;
-            --bg-card:      #101012;
-            --bg-card-h:    #161618;
-            --text:         #f0ece5;
+            --bg:           #faf9f7;
+            --bg-card:      #ffffff;
+            --bg-card-h:    #f3f2ef;
+            --text:         #1a1917;
             --muted:        #6e6b65;
-            --dim:          #252420;
+            --dim:          #e5e3df;
 
-            --pink:   #ff2d6b;
-            --blue:   #00aaff;
-            --green:  #2dff8a;
-            --purple: #9b5fff;
+            --pink:   #d6245a;
+            --blue:   #0074cc;
+            --green:  #00875a;
+            --purple: #7236d6;
 
             --font-display: 'Cormorant Garamond', Georgia, serif;
             --font-brand:   ui-rounded, 'SF Pro Rounded', 'Cormorant Garamond', Georgia, serif;
@@ -68,7 +68,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(8,8,8,.88) 0%, transparent 100%);
+            background: linear-gradient(to bottom, rgba(250,249,247,.92) 0%, transparent 100%);
         }
 
         .skip-link {
@@ -80,6 +80,7 @@
             padding: 8px 16px;
             border-radius: 6px;
             font-size: .82rem;
+            font-weight: 500;
             z-index: 200;
             text-decoration: none;
         }
@@ -121,7 +122,7 @@
             height: clamp(96px, 16vw, 148px);
             border-radius: 26%;
             margin-bottom: 52px;
-            filter: drop-shadow(0 0 40px rgba(155,95,255,.3));
+            box-shadow: 0 8px 40px rgba(0,0,0,.12);
         }
 
         .hero h1 {
@@ -199,7 +200,8 @@
             background: var(--bg-card);
             padding: 38px 34px;
             border-left: 3px solid var(--accent, var(--purple));
-            transition: background .25s, transform .25s;
+            box-shadow: 0 1px 3px rgba(0,0,0,.04);
+            transition: background .25s;
         }
 
         .card:hover {
