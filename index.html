@@ -124,6 +124,10 @@
             border-radius: 26%;
             margin-bottom: 52px;
             box-shadow: 0 8px 40px rgba(0,0,0,.12);
+            -webkit-user-drag: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            pointer-events: none;
         }
 
         .hero h1 {
@@ -319,11 +323,7 @@
             font-size: 2.2rem;
             font-weight: 600;
             letter-spacing: .04em;
-            background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue), var(--green));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            opacity: .4;
+            opacity: .22;
         }
 
         .footer-links {
@@ -413,7 +413,7 @@
 
 <!-- HERO -->
 <section class="hero" id="main">
-    <img src="./icon.png" alt="Culla app icon" class="hero-icon">
+    <img src="./icon.png" alt="Culla app icon" class="hero-icon" draggable="false">
 
     <h1>Your memories deserve better<br><em>than scrolling past them.</em></h1>
 
