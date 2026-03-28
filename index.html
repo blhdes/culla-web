@@ -107,7 +107,7 @@
         /* ── HERO ──────────────────────────────────────────── */
         .hero {
             min-height: 100vh;
-            min-height: 100dvh;
+            min-height: 100svh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -319,7 +319,11 @@
             font-size: 2.2rem;
             font-weight: 600;
             letter-spacing: .04em;
-            opacity: .22;
+            background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue), var(--green));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: .4;
         }
 
         .footer-links {
