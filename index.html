@@ -101,6 +101,17 @@
 
         nav.on-dark .logo { color: #f0ece5; }
 
+        .nav-link {
+            margin-left: auto;
+            font-size: .82rem;
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .25s;
+        }
+        .nav-link:hover { color: var(--text); }
+        nav.on-dark .nav-link { color: #9a968e; }
+        nav.on-dark .nav-link:hover { color: #f0ece5; }
+
 
         /* ── APP STORE BADGE ───────────────────────────────── */
         .app-store-badge {
@@ -430,6 +441,7 @@
 <!-- NAV -->
 <nav>
     <a href="#" class="logo">Culla</a>
+    <a href="/music/" class="nav-link">Culla&nbsp;Music&nbsp;→</a>
 </nav>
 
 
