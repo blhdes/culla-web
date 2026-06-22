@@ -113,25 +113,52 @@
         nav.on-dark .nav-link:hover { color: #f0ece5; }
 
 
-        /* ── COMING SOON PILL ──────────────────────────────── */
-        .coming-soon {
+        /* ── APP STORE BADGE ───────────────────────────────── */
+        .app-store-badge {
+            display: inline-block;
+            transition: opacity .2s;
+        }
+        .app-store-badge:hover { opacity: .8; }
+        .app-store-badge img {
+            height: 40px;
+            -webkit-user-drag: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            pointer-events: none;
+        }
+
+        /* ── APPLE MUSIC LOGOTYPE ──────────────────────────── */
+        .apple-music-mark {
             display: inline-flex;
             align-items: center;
-            gap: 9px;
-            font-size: .82rem;
-            font-weight: 400;
-            letter-spacing: .03em;
-            color: var(--muted);
-            border: 1px solid var(--dim);
-            border-radius: 999px;
-            padding: 11px 22px;
+            gap: .3em;
+            font-family: -apple-system, 'SF Pro Display', 'DM Sans', sans-serif;
+            font-weight: 500;
+            letter-spacing: -.015em;
+            white-space: nowrap;
+            color: var(--text);
         }
-        .coming-soon::before {
-            content: '';
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--green);
+        .apple-music-mark img {
+            height: 1.05em;
+            width: auto;
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+
+        /* ── HERO NOTE ─────────────────────────────────────── */
+        .hero-note {
+            margin-top: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            font-size: .82rem;
+            color: var(--muted);
+        }
+        .hero-note .apple-music-mark { font-size: .95rem; }
+        .hero-note .sep {
+            width: 1px;
+            height: 13px;
+            background: var(--dim);
         }
 
         /* ── HERO ──────────────────────────────────────────── */
@@ -269,6 +296,34 @@
         .card p {
             font-size: .88rem;
             color: var(--muted);
+            line-height: 1.75;
+        }
+
+
+        /* ── COMPATIBILITY ─────────────────────────────────── */
+        .compat { text-align: center; }
+
+        .compat .apple-music-mark {
+            font-size: clamp(2rem, 6vw, 3.1rem);
+            margin-bottom: 30px;
+        }
+
+        .compat-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+            font-weight: 300;
+            line-height: 1.35;
+            max-width: 640px;
+            margin: 0 auto 22px;
+        }
+
+        .compat-text em { font-style: italic; opacity: .9; }
+
+        .compat-note {
+            font-size: .9rem;
+            color: var(--muted);
+            max-width: 470px;
+            margin: 0 auto;
             line-height: 1.75;
         }
 
@@ -442,6 +497,11 @@
             background: var(--bg-card-h);
         }
 
+        .app-store-badge:focus-visible {
+            outline: 2px solid var(--text);
+            outline-offset: 3px;
+        }
+
         /* ── REDUCED MOTION ────────────────────────────────── */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -483,9 +543,15 @@
         Swipe right to keep, left to pass. Nothing leaves your phone.
     </p>
 
-    <!-- When the app is approved, swap this pill for the App Store badge:
-         <a href="APP_STORE_URL" class="app-store-badge"><img src="../app-store-badge.svg" alt="Download on the App Store" draggable="false"></a> -->
-    <span class="coming-soon">Coming soon to the App Store</span>
+    <a href="https://apps.apple.com/us/app/cullamusic/id6778348600" class="app-store-badge">
+        <img src="../app-store-badge.svg" alt="Download on the App Store" draggable="false">
+    </a>
+
+    <p class="hero-note">
+        <span class="apple-music-mark"><img src="./apple-music-icon.svg" alt="" draggable="false">Apple&nbsp;Music</span>
+        <span class="sep"></span>
+        <span>required</span>
+    </p>
 
 </section>
 
@@ -532,6 +598,22 @@
         </div>
 
     </div>
+</section>
+
+
+<!-- COMPATIBILITY -->
+<section class="section compat reveal" id="compatibility">
+    <p class="section-label">Compatibility</p>
+
+    <span class="apple-music-mark"><img src="./apple-music-icon.svg" alt="" draggable="false">Apple&nbsp;Music</span>
+
+    <p class="compat-text">
+        Culla Music is built <em>exclusively for Apple&nbsp;Music</em>. It plugs straight into your real library through Apple's MusicKit — no exports, no copies, nothing to set up.
+    </p>
+
+    <p class="compat-note">
+        Spotify and other services may arrive in the future. For now, Culla Music is made for Apple&nbsp;Music alone.
+    </p>
 </section>
 
 
@@ -632,6 +714,10 @@
 <!-- FOOTER -->
 <footer>
     <div class="footer-logo">Culla&nbsp;Music</div>
+
+    <a href="https://apps.apple.com/us/app/cullamusic/id6778348600" class="app-store-badge">
+        <img src="../app-store-badge.svg" alt="Download on the App Store" draggable="false">
+    </a>
 
     <div class="footer-links">
         <span>Built with ❤️ from Barcelona</span>
