@@ -101,16 +101,49 @@
 
         nav.on-dark .logo { color: #f0ece5; }
 
-        .nav-link {
+        /* ── PRODUCT SWITCHER ──────────────────────────────── */
+        .nav-switch {
             margin-left: auto;
-            font-size: .82rem;
+            display: inline-flex;
+            gap: 2px;
+            padding: 3px;
+            border-radius: 999px;
+            background: rgba(26, 25, 23, .045);
+            border: 1px solid var(--dim);
+        }
+        .nav-switch a {
+            font-size: .8rem;
+            line-height: 1;
+            padding: 7px 14px;
+            border-radius: 999px;
             color: var(--muted);
             text-decoration: none;
-            transition: color .25s;
+            white-space: nowrap;
+            transition: color .25s, background .25s, box-shadow .25s;
         }
-        .nav-link:hover { color: var(--text); }
-        nav.on-dark .nav-link { color: #9a968e; }
-        nav.on-dark .nav-link:hover { color: #f0ece5; }
+        .nav-switch a:hover { color: var(--text); }
+        .nav-switch a[aria-current="page"] {
+            color: var(--text);
+            background: var(--bg-card);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+            font-weight: 500;
+        }
+
+        nav.on-dark .nav-switch {
+            background: rgba(255, 255, 255, .07);
+            border-color: rgba(255, 255, 255, .14);
+        }
+        nav.on-dark .nav-switch a { color: #9a968e; }
+        nav.on-dark .nav-switch a:hover { color: #f0ece5; }
+        nav.on-dark .nav-switch a[aria-current="page"] {
+            color: #f5f1ea;
+            background: rgba(255, 255, 255, .14);
+            box-shadow: none;
+        }
+
+        @media (max-width: 380px) {
+            .nav-switch a { padding: 7px 11px; font-size: .74rem; }
+        }
 
 
         /* ── APP STORE BADGE ───────────────────────────────── */
@@ -528,7 +561,10 @@
 <!-- NAV -->
 <nav>
     <a href="#main" class="logo">Culla&nbsp;Music</a>
-    <a href="/" class="nav-link">Culla for photos&nbsp;→</a>
+    <div class="nav-switch">
+        <a href="/">Culla</a>
+        <a href="#main" aria-current="page">Culla&nbsp;Music</a>
+    </div>
 </nav>
 
 

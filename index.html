@@ -101,16 +101,49 @@
 
         nav.on-dark .logo { color: #f0ece5; }
 
-        .nav-link {
+        /* ── PRODUCT SWITCHER ──────────────────────────────── */
+        .nav-switch {
             margin-left: auto;
-            font-size: .82rem;
+            display: inline-flex;
+            gap: 2px;
+            padding: 3px;
+            border-radius: 999px;
+            background: rgba(26, 25, 23, .045);
+            border: 1px solid var(--dim);
+        }
+        .nav-switch a {
+            font-size: .8rem;
+            line-height: 1;
+            padding: 7px 14px;
+            border-radius: 999px;
             color: var(--muted);
             text-decoration: none;
-            transition: color .25s;
+            white-space: nowrap;
+            transition: color .25s, background .25s, box-shadow .25s;
         }
-        .nav-link:hover { color: var(--text); }
-        nav.on-dark .nav-link { color: #9a968e; }
-        nav.on-dark .nav-link:hover { color: #f0ece5; }
+        .nav-switch a:hover { color: var(--text); }
+        .nav-switch a[aria-current="page"] {
+            color: var(--text);
+            background: var(--bg-card);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+            font-weight: 500;
+        }
+
+        nav.on-dark .nav-switch {
+            background: rgba(255, 255, 255, .07);
+            border-color: rgba(255, 255, 255, .14);
+        }
+        nav.on-dark .nav-switch a { color: #9a968e; }
+        nav.on-dark .nav-switch a:hover { color: #f0ece5; }
+        nav.on-dark .nav-switch a[aria-current="page"] {
+            color: #f5f1ea;
+            background: rgba(255, 255, 255, .14);
+            box-shadow: none;
+        }
+
+        @media (max-width: 380px) {
+            .nav-switch a { padding: 7px 11px; font-size: .74rem; }
+        }
 
 
         /* ── APP STORE BADGE ───────────────────────────────── */
@@ -262,6 +295,50 @@
         .card p {
             font-size: .88rem;
             color: var(--muted);
+            line-height: 1.75;
+        }
+
+
+        /* ── COMPATIBILITY ─────────────────────────────────── */
+        .compat { text-align: center; }
+
+        .apple-photos-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: .32em;
+            font-family: -apple-system, 'SF Pro Display', 'DM Sans', sans-serif;
+            font-size: clamp(2rem, 6vw, 3.1rem);
+            font-weight: 500;
+            letter-spacing: -.015em;
+            white-space: nowrap;
+            color: var(--text);
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: opacity .2s;
+        }
+        .apple-photos-mark:hover { opacity: .72; }
+        .apple-photos-mark img {
+            height: 1.05em;
+            width: auto;
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+
+        .compat-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+            font-weight: 300;
+            line-height: 1.35;
+            max-width: 640px;
+            margin: 0 auto 22px;
+        }
+        .compat-text em { font-style: italic; opacity: .9; }
+
+        .compat-note {
+            font-size: .9rem;
+            color: var(--muted);
+            max-width: 470px;
+            margin: 0 auto;
             line-height: 1.75;
         }
 
@@ -441,7 +518,10 @@
 <!-- NAV -->
 <nav>
     <a href="#" class="logo">Culla</a>
-    <a href="/music/" class="nav-link">Culla&nbsp;Music&nbsp;→</a>
+    <div class="nav-switch">
+        <a href="#" aria-current="page">Culla</a>
+        <a href="/music/">Culla&nbsp;Music</a>
+    </div>
 </nav>
 
 
@@ -505,6 +585,24 @@
         </div>
 
     </div>
+</section>
+
+
+<!-- COMPATIBILITY -->
+<section class="section compat reveal" id="compatibility">
+    <p class="section-label">Compatibility</p>
+
+    <a href="https://support.apple.com/en-za/guide/photos/welcome/mac" class="apple-photos-mark" target="_blank" rel="noopener">
+        <img src="./apple-photos-icon.png" alt="" draggable="false">Apple&nbsp;Photos
+    </a>
+
+    <p class="compat-text">
+        Culla works directly with the photo library already on your device — Apple's own <em>Photos</em>. No importing, no second library, no setup. What you sort is the real thing.
+    </p>
+
+    <p class="compat-note">
+        Built on Apple's PhotoKit, the same framework Photos itself uses. Your originals stay exactly where they are — Culla just gives you a calmer way to move through them.
+    </p>
 </section>
 
 
